@@ -286,7 +286,7 @@ async function eliminarProductoDelCarrito (req, res) {
           res.status(404).send("Identificador de Producto invalido");
           } 
           else {
-            const indice  = cart.products.findIndex((product) => String(product.productId) === productIdToFind);
+            const indice  = cart.products.findIndex((product) => String(product.productId._id) === String(productIdToFind));
             if (indice!==-1) {
             cart.products.splice(indice,1)
             }

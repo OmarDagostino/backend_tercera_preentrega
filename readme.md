@@ -1,4 +1,4 @@
-# Desafío de la clase 30 #era. Pre-entrega final
+# Desafío de la 3era. Pre-entrega final
 # Comisión 55565  de CoderHouse
 
 ## Autor : Omar D'Agostino
