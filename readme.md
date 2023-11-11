@@ -6,7 +6,7 @@
 ## Funcionalidades agregadas 
     * Se creo el proceso de compras , el cual toma el carrito y con los productos con suficiente stock genera un ticket con la compra que graba en la colección tickets1 . Descuenta el stock de los productos comprados. y en caso que haya productos con existencias insuficientes deja la cantidad remanente en el carrito del usuario avisandole por mensaje y mail de tal situacion al usuario. Tambien le envia un mail con el ticket generado y toda su información.
 
-    * Se creo un sistema de middleware que controla que solo los usuarios puedan agregar productos al carritos , hacer la compra y utilizar el chat. Tambien se controla que solo el administrador pueda mantener el archivo de productos (altas, bajas, modificaciones y eliminaciones), como asi tambien las vistas correspondientes con handlebars
+    * Se creo un sistema de middleware que controla que solo los usuarios puedan agregar productos al carrito , hacer la compra y utilizar el chat. Tambien se controla que solo el administrador pueda mantener el archivo de productos (altas, bajas, modificaciones y eliminaciones), como asi tambien las vistas correspondientes con handlebars
 
     * Se refactorizó el codigo para hacerlo por capas, se establecieron las capas de controller, de DAO, de Servicios , de rutas y de vistas (con handlebars) Diferenciandose los modulos de productos, carritos, usuarios y chat
 
@@ -40,11 +40,5 @@
     "socket.io": "^4.7.2",
     "socket.io-client": "^4.7.2"
 
-
-
-   
-   
-
-   
 
    Nota : Se desconecto el manejador de rutas de File System , pero no se eliminó (quedo en un manager separado y se comento en el código de app.js)
