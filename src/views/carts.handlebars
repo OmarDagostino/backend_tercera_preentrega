@@ -1,18 +1,23 @@
 {{>menu}}
 <body>
-    <h4>
+    <h4 id="identificador del carrito ">
         Identificador del carrito 
     
     <strong> 
         {{cart.cartId}}
-    </strong>
-    <strong>
-        <form action="api/carts/{{cart.cartId}}/purchase" method="POST">
+   
+        <form id=submitcomprar action="api/carts/{{cart.cartId}}/purchase" method="POST">
             <button id=boton_de_compra type="submit">Comprar</button>
         </form>
-        {{mensaje}}
+        
     </strong>
     </h4>
+<h4>
+    <strong>
+        {{mensaje}}
+    </strong>
+</h4>
+
     <table>
         <thead>
             <tr>

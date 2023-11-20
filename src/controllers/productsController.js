@@ -82,7 +82,7 @@ async function crearProducto(req, res) {
   try {
     
     const newProduct = req.body;
-  
+   
     // Verificar si el producto ya existe por su código
     const existingProduct = await productServices.obtenerProductoPorCodigo(newProduct.code);
     if (existingProduct) {

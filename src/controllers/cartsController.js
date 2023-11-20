@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongodb';
 import { productServices } from '../services/productsServices.js';
-import {cartModel, ticketsModel} from '../dao/models/user.model.js';
+import {cartModel} from '../models/cart.model.js';
 import {cartsServices} from '../services/cartsServices.js'
 import { ticketsServices } from '../services/ticketsServices.js';
 import { usersServices } from '../services/usersServices.js';
@@ -165,12 +165,17 @@ async function procesoDeCompra (req,res) {
     const discounts = 0;
     const taxes = 0;
     const amount = totalTicket - discounts + taxes;
+
+    let emailContent = ''
+    let sendermail=''
+    const user= await usersServices.obtenerUsuarioPorCartid (cartId)
+    const userId = user._id
+    const useremail = user.email
     // generacion del ticket de compra
+    if (productsToTicket.length!==0){
       let codigoMayor = await ticketsServices.obtenerCodigoMayor()
       codigoMayor++
       const codigo = codigoMayor.toString ()
-      const user= await usersServices.obtenerUsuarioPorCartid (cartId)
-      const userId = user._id
       const newtickect = {
         products: productsToTicket,
         code:codigo,
@@ -208,7 +213,7 @@ async function procesoDeCompra (req,res) {
           ${emailContent}
           `
     });
-
+  }
     
     // actualizar carrito con los productos pendientes sin stock 
     updatedCart.products = []; 
@@ -230,7 +235,7 @@ if (productsToWait.length > 0) {
     // enviar mail del carrito pendiente de stock 
     
     if (productsToTicket.length !== 0 )  {
-        subject = `Carrito de compra ${cartId}`
+        let subject = `Carrito de compra ${cartId}`
         emailContent = '<table border="1"><tr><th>Identificador del Producto</th><th>Cantidad</th></tr>';
         productsToWait.forEach(item => {
             emailContent += `<tr><td>${item.ProductId}</td><td>${item.Cantidad}</td></tr>`;
@@ -257,7 +262,7 @@ if (productsToWait.length > 0) {
     return res.redirect(`/carts?mensaje=${mensaje}`)
   } catch (error) {
     console.error(`-Purchase Process - Error al enviar el correo: ${error}`);
-    res.status(500).send(`- Purchase Process -Error en el servidor`);
+    res.status(500).send(`- Purchase Process -Error en el servidor`,error);
   }
   
 }

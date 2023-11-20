@@ -8,7 +8,7 @@ import viewsRouter from './routes/router.views.js';
 import {router as sesionsRouter} from './routes/router.sessions.js';
 import session from 'express-session';
 import ConnectMongo from 'connect-mongo';
-import inicializaPassport from './routes/passport-config.js';
+import inicializaPassport from './middlewares/passport-config.js';
 import passport from 'passport';
 import {config} from './config/config.js';
 import chatController from './controllers/chatController.js'

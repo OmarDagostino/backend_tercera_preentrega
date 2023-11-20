@@ -2,6 +2,7 @@ import {Router} from 'express'
 import bodyParser from 'body-parser'
 import {config} from '../config/config.js'
 export const router = Router ()
+import dtoUsuario from '../middlewares/dtoUsuario.js'
 
 router.use(bodyParser.urlencoded({ extended: true }));
 
@@ -57,7 +58,16 @@ async function logout(req,res) {
 // mostrar los datos del usuario que esta registrado
 
 async function current (req,res) {
-  res.redirect('./current')
+  const usuario= req.dto.usuario 
+  return res.status(200).json({usuario})
+
+}
+
+// mostrar los datos del usuario que esta registrado
+
+async function current1 (req,res) {
+  
+  return res.redirect('./current')
 }
   
-  export default {errorLogin, errorLoginGitHub, errorRegistro, Login ,logout, current}
+  export default {errorLogin, errorLoginGitHub, errorRegistro, Login ,logout, current, current1}

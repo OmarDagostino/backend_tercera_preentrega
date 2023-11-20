@@ -1,6 +1,6 @@
 import __dirname from '../util.js';
 import {Server} from 'socket.io';
-import { chatModel } from '../../src/dao/models/user.model.js';
+import { chatModel } from '../../src/models/chat.model.js';
 import express from 'express';
 
 // dinámica del CHAT
